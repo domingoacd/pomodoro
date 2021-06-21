@@ -1,0 +1,37 @@
+@use '../../sass/variables';
+
+.buttonsContainer {
+    border-radius: 5rem;
+    padding: 0.5rem;
+    margin-bottom: 5rem;
+    background-color: variables.$bg-darker;
+}
+
+.button {
+    border-radius: 3rem;
+    border: none;
+    margin: 0 0.3rem;
+    padding: 1.5rem 3rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: variables.$text-primary;
+    background-color: transparent;
+
+    &.active {
+        color: variables.$text-dark;
+    }
+
+    &.blue {
+        background-color: variables.$blue;
+    }
+
+    &.green {
+        background-color: variables.$green;
+    }
+
+    &.pink {
+        background-color: variables.$pink;
+    }
+}
+
