@@ -1,0 +1,6 @@
+@use '../../sass/variables';
+
+.title {
+    text-transform: capitalize;
+    color: variables.$text-primary;
+}
