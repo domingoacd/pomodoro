@@ -1,0 +1,178 @@
+@use '../../sass/variables';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal {
+  position: relative;
+  width: 90%;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  padding-bottom: 5rem;
+  border-radius: 20px;
+  background-color: variables.$bg-light;
+
+  &__header {
+      width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem 1rem;
+    margin: 0 -1rem;
+    border-bottom: 2px solid variables.$text-light;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: variables.$text-dark;
+  }
+
+  .close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: variables.$text-modal;
+  }
+
+  .modal_box {
+      width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid variables.$text-light;
+    
+    &.no_border {
+        border-bottom: none;
+    }
+
+    &__title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: variables.$text-modal-dark;
+    }
+  }
+
+  .options_box {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__option {
+      width: 32%;
+      display: flex;
+      flex-direction: column;
+
+      span {
+        margin-bottom: 0.2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: variables.$text-modal;
+      }
+
+      input {
+        height: 2.5rem;
+        border-radius: 10px;
+        border: none;
+        padding: 0.2rem 0.4rem;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: variables.$text-darker;
+        background-color: rgba(variables.$text-light, 0.5);
+      }
+    }
+
+    &__font {
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: variables.$text-modal;
+      background-color: variables.$text-light;
+    }
+
+    &__active {
+      color: variables.$text-light;
+      background-color: variables.$text-darker;
+    }
+
+    &__color {
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+
+      img {
+        display: none;
+      }
+
+      &.active_color {
+        img {
+          width: 40%;
+          display: block;
+        }
+      }
+      &.blue {
+        background-color: variables.$blue;
+      }
+
+      &.green {
+        background-color: variables.$green;
+      }
+
+      &.pink {
+        background-color: variables.$pink;
+      }
+    }
+  }
+
+  .save_btn {
+      position: absolute;
+      bottom: -1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.8rem 3.5rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: variables.$text-dark;
+      background-color: variables.$blue;
+  }
+}

@@ -9,3 +9,9 @@ button {
     background: unset;
     border: unset;
 }
+
+input {
+    &:focus {
+        outline: none;
+    }
+}
