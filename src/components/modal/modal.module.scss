@@ -17,8 +17,8 @@
 }
 
 .show {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal {
@@ -34,7 +34,7 @@
   background-color: variables.$bg-light;
 
   &__header {
-      width: 100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,7 +57,7 @@
   }
 
   .modal_box {
-      width: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -65,9 +65,9 @@
     gap: 1.5rem;
     padding: 1.5rem 0;
     border-bottom: 2px solid variables.$text-light;
-    
+
     &.no_border {
-        border-bottom: none;
+      border-bottom: none;
     }
 
     &__title {
@@ -147,32 +147,32 @@
           display: block;
         }
       }
-      &.blue {
-        background-color: variables.$blue;
-      }
-
-      &.green {
-        background-color: variables.$green;
-      }
-
-      &.pink {
-        background-color: variables.$pink;
-      }
     }
   }
 
   .save_btn {
-      position: absolute;
-      bottom: -1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.8rem 3.5rem;
-      border-radius: 20px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      color: variables.$text-dark;
-      background-color: variables.$blue;
+    position: absolute;
+    bottom: -1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 3.5rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: variables.$text-white;
+  }
+
+  .blue {
+    background-color: variables.$blue;
+  }
+
+  .green {
+    background-color: variables.$green;
+  }
+
+  .pink {
+    background-color: variables.$pink;
   }
 }

@@ -1,11 +1,15 @@
 @use '../../sass/variables';
 
 .timer {
-  width: 17rem;
-  height: 17rem;
+  width: 80vw;
+  height: 80vw;
+  max-width: 20rem;
+  max-height: 20rem;
+  min-width: 15rem;
+  min-height: 15rem;
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background-color: variables.$bg-darker;
   box-shadow: -5px -5px 23px 7px rgb(255 255 255 / 19%),
@@ -20,23 +24,35 @@
     align-items: center;
     padding: 0.2rem;
     border-radius: 50%;
-    border: 7px solid variables.$blue;
+    border: 7px solid transparent;
+
+    &.blue {
+      border-color: variables.$blue;
+    }
+
+    &.pink {
+      border-color: variables.$pink;
+    }
+
+    &.green {
+      border-color: variables.$green;
+    }
 
     .time {
-        font-size: 5rem;
-        font-family: 'Roboto Slab', serif;
-        color: variables.$text-primary;
+      font-size: clamp(1rem, 14vw, 5rem);
+      font-family: "Roboto Slab", serif;
+      color: variables.$text-primary;
     }
 
     .pause {
-        font-size: 1rem;
-        font-family: 'Roboto Slab', serif;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 1rem;
-        margin-right: -0.9rem;
-        cursor: pointer;
-        color: variables.$text-primary;
+      font-size: 1rem;
+      font-family: "Roboto Slab", serif;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      margin-right: -0.9rem;
+      cursor: pointer;
+      color: variables.$text-primary;
     }
   }
 }

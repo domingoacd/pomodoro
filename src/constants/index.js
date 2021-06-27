@@ -1,9 +1,15 @@
-export const BASE_CONFIG = {
-    pomodoro: 25,
-    short_break: 5,
-    long_break: 15,
-    color: 'blue',
-    font: 'first'
-}
+export const STORAGE_NAME = "pomo_config";
+export const BASE_CONFIG = Object.freeze({
+  pomodoro: 25,
+  short_break: 5,
+  long_break: 15,
+  color: "blue",
+  font: "first",
+});
+export const TIMERS_INITIAL_STATE = [
+  { id: "pomodoro", name: "pomodoro", active: true },
+  { id: "short_break", name: "short break", active: false },
+  { id: "long_break", name: "long break", active: false },
+];
 
-export const STORAGE_NAME = 'pomo_config';
+export const COLORS = ['blue', 'pink', 'green'];
