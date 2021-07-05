@@ -1,4 +1,6 @@
 import { BASE_CONFIG, STORAGE_NAME, DEFAULT_TIMER } from "../constants";
+import pomodoroSound from '../assets/pomodoro.wav'
+import restSound from '../assets/rest.mp3';
 
 export const fetchUserConfig = () => {
   const userConfig = localStorage.getItem(STORAGE_NAME) || BASE_CONFIG;
@@ -22,3 +24,9 @@ export const convertMinutesToMilliseconds = (minutes) => {
 export const convertMillisecondsToMinutes = (milliseconds) => {
   return Number(milliseconds) / 60 / 1000; 
 }
+
+export const playNotification = (timerId) => {
+  const audio = new Audio(timerId === 'pomodoro' ? pomodoroSound : restSound);
+  audio.play();
+}
+

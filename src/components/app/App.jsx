@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Title from "../title/Title";
 import Buttons from "../buttons/Buttons";
 import Timer from "../timer/Timer";
@@ -8,6 +8,7 @@ import {
   fetchUserConfig,
   getActiveTimerFromTimers,
   getInitialTime,
+  playNotification
 } from "../../functions";
 import { TIMERS_INITIAL_STATE } from "../../constants";
 import { app } from "./app.module.scss";
@@ -17,7 +18,9 @@ const App = (props) => {
   const [userConfig, setUserConfig] = useState(fetchUserConfig());
   const [timers, setTimers] = useState([...TIMERS_INITIAL_STATE]);
   const [time, setTime] = useState(getInitialTime());
-  const [intervalId, setIntervalId] = useState(null);
+  const [pause, setPause] = useState(false);
+  const intervalId = useRef(null);
+  const timerIsPaused = useRef(false);
   function closeModal() {
     setShowModal(false);
   }
@@ -31,8 +34,12 @@ const App = (props) => {
       timer.id === timerId ? (timer.active = true) : (timer.active = false);
       return timer;
     });
-
+    const newTimer = newTimers.find((timer) => timer.id === timerId);
     setTimers(newTimers);
+    setTime(`${userConfig[newTimer.id]}:00`);
+    clearInterval(intervalId.current);
+    intervalId.current = null;
+    setPause(false);
   }
 
   function saveNewUserConfig(newUserConfig) {
@@ -44,25 +51,43 @@ const App = (props) => {
     let currentMinutes = userConfig[currentTimer.id];
     let currentSeconds = -1;
 
-    const intId = setInterval(() => {
-      if (currentSeconds > 0) {
-        currentSeconds = currentSeconds - 1;
-        setTime(
-          () =>
-            `${currentMinutes}:${
-              currentSeconds.toString().length < 2
-                ? "0" + currentSeconds
-                : currentSeconds
-            }`
-        );
-      } else {
-        currentSeconds = 59;
-        currentMinutes = currentMinutes - 1;
-        setTime(() => `${currentMinutes}:${currentSeconds}`);
-      }
-    }, 1000);
+    if (timerIsPaused.current) {
+      timerIsPaused.current = false;
+    } else {
+      const intId = setInterval(() => {
 
-    setIntervalId(intId);
+        if (currentMinutes <= 0 && currentSeconds <= 1) {
+          clearInterval(intervalId.current);
+          playNotification(getActiveTimerFromTimers(timers).id);
+          setPause(false);
+        }
+        if (!timerIsPaused.current) {
+          console.log(currentMinutes, currentSeconds)
+          if (currentSeconds > 0) {
+            currentSeconds = currentSeconds - 1;
+            setTime(
+              () =>
+                `${currentMinutes}:${currentSeconds
+                  .toString()
+                  .padStart(2, "0")}`
+            );
+          } else {
+            currentSeconds = 59;
+            currentMinutes = currentMinutes - 1;
+            setTime(() => `${currentMinutes}:${currentSeconds}`);
+          }
+        }
+      }, 1000);
+
+      intervalId.current = intId;
+      console.log(intId)
+      setPause(true);
+    }
+  }
+
+  function pauseTimer() {
+    timerIsPaused.current = true;
+    setPause(true);
   }
 
   return (
@@ -79,7 +104,9 @@ const App = (props) => {
         currentTimer={getActiveTimerFromTimers(timers)}
         userConfig={userConfig}
         startTimer={startTimer}
+        pauseTimer={pauseTimer}
         currentTime={time}
+        showPauseButton={pause}
       />
       <SettingsButton openModal={openModal} />
     </div>

@@ -6,10 +6,16 @@ import {
   toggleTimer,
   blue,
   pink,
-  green
+  green,
 } from "./timer.module.scss";
 
-const Timer = ({ currentTimer, userConfig, startTimer, currentTime }) => {
+const Timer = ({
+  userConfig,
+  startTimer,
+  pauseTimer,
+  currentTime,
+  showPauseButton,
+}) => {
   const [showStartBtn, setShowStartBtn] = useState(true);
   const colorsMapper = {
     blue,
@@ -18,20 +24,25 @@ const Timer = ({ currentTimer, userConfig, startTimer, currentTime }) => {
   };
 
   const runTimer = (e) => {
-    setShowStartBtn(false);
     startTimer();
-  }
+  };
+
+  const stopTimer = (e) => {
+    pauseTimer();
+  };
 
   return (
     <div className={timer}>
       <div className={`${timer__inner} ${colorsMapper[userConfig.color]}`}>
         <span className={time}>{currentTime}</span>
-        {showStartBtn ? (
+        {showPauseButton ? (
+          <button className={toggleTimer} onClick={stopTimer}>
+            Pause
+          </button>
+        ) : (
           <button className={`${toggleTimer}`} onClick={runTimer}>
             Start
           </button>
-        ) : (
-          <button className={toggleTimer}>Pause</button>
         )}
       </div>
     </div>
