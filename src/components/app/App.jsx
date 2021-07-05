@@ -4,7 +4,11 @@ import Buttons from "../buttons/Buttons";
 import Timer from "../timer/Timer";
 import SettingsButton from "../settingsButton/SettingsButton";
 import Modal from "../modal/Modal";
-import { fetchUserConfig, getActiveTimerFromTimers } from "../../functions";
+import {
+  fetchUserConfig,
+  getActiveTimerFromTimers,
+  getInitialTime,
+} from "../../functions";
 import { TIMERS_INITIAL_STATE } from "../../constants";
 import { app } from "./app.module.scss";
 
@@ -12,10 +16,8 @@ const App = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [userConfig, setUserConfig] = useState(fetchUserConfig());
   const [timers, setTimers] = useState([...TIMERS_INITIAL_STATE]);
-  const [currentTimer, setCurrentTimer] = useState({
-    ...TIMERS_INITIAL_STATE[0],
-  });
-
+  const [time, setTime] = useState(getInitialTime());
+  const [intervalId, setIntervalId] = useState(null);
   function closeModal() {
     setShowModal(false);
   }
@@ -37,6 +39,32 @@ const App = (props) => {
     setUserConfig({ ...newUserConfig });
   }
 
+  function startTimer() {
+    let currentTimer = timers.find((timer) => timer.active);
+    let currentMinutes = userConfig[currentTimer.id];
+    let currentSeconds = -1;
+
+    const intId = setInterval(() => {
+      if (currentSeconds > 0) {
+        currentSeconds = currentSeconds - 1;
+        setTime(
+          () =>
+            `${currentMinutes}:${
+              currentSeconds.toString().length < 2
+                ? "0" + currentSeconds
+                : currentSeconds
+            }`
+        );
+      } else {
+        currentSeconds = 59;
+        currentMinutes = currentMinutes - 1;
+        setTime(() => `${currentMinutes}:${currentSeconds}`);
+      }
+    }, 1000);
+
+    setIntervalId(intId);
+  }
+
   return (
     <div className={app}>
       <Modal
@@ -50,6 +78,8 @@ const App = (props) => {
       <Timer
         currentTimer={getActiveTimerFromTimers(timers)}
         userConfig={userConfig}
+        startTimer={startTimer}
+        currentTime={time}
       />
       <SettingsButton openModal={openModal} />
     </div>
