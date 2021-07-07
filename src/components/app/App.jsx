@@ -97,7 +97,7 @@ const App = (props) => {
     clearInterval(intervalId.current);
     setPause(false);
   }
-
+  console.log('running')
   return (
     <div className={app}>
       <Modal
