@@ -1,17 +1,23 @@
 import React, { useState } from "react";
-import styles, {blue, pink, green} from "./modal.module.scss";
+import styles, { blue, pink, green } from "./modal.module.scss";
 import checkIcon from "../../assets/check.png";
 const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
   const [currentColor, setCurrentColor] = useState(userConfig.color);
+  const [pomodoroTime, setPomodoroTime] = useState(null);
+  const [shortBreakTime, setShortBreakTime] = useState(null);
+  const [longBreakTime, setLongBreakTime] = useState(null);
   const colorsMapper = {
     blue,
     pink,
-    green
-  }
-  
+    green,
+  };
+
   function saveSettings(e) {
-    const newUserConfig = {...userConfig};
+    const newUserConfig = { ...userConfig };
     newUserConfig.color = currentColor;
+    newUserConfig.pomodoro = pomodoroTime || userConfig.pomodoro;
+    newUserConfig.long_break = longBreakTime || userConfig.long_break;
+    newUserConfig.short_break = shortBreakTime || userConfig.short_break;
     saveUserConfig(newUserConfig);
     closeModal();
   }
@@ -36,7 +42,8 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
                 name=""
                 id=""
                 min="0"
-                value={userConfig.pomodoro}
+                value={pomodoroTime || userConfig.pomodoro}
+                onChange={(e) => setPomodoroTime(e.target.value)}
               />
             </label>
             <label htmlFor="" className={styles.options_box__option}>
@@ -46,7 +53,8 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
                 name=""
                 id=""
                 min="0"
-                value={userConfig.short_break}
+                value={shortBreakTime || userConfig.short_break}
+                onChange={(e) => setShortBreakTime(e.target.value)}
               />
             </label>
             <label htmlFor="" className={styles.options_box__option}>
@@ -56,26 +64,10 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
                 name=""
                 id=""
                 min="0"
-                value={userConfig.long_break}
+                value={longBreakTime || userConfig.long_break}
+                onChange={(e) => setLongBreakTime(e.target.value)}
               />
             </label>
-          </div>
-        </div>
-
-        <div className={styles.modal_box}>
-          <p className={styles.modal_box__title}>font</p>
-          <div className={styles.options_box}>
-            <button
-              className={`${styles.options_box__font} ${styles.options_box__active}`}
-            >
-              <span>Aa</span>
-            </button>
-            <button className={styles.options_box__font}>
-              <span>Aa</span>
-            </button>
-            <button className={styles.options_box__font}>
-              <span>Aa</span>
-            </button>
           </div>
         </div>
 
@@ -86,7 +78,7 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
               className={`${styles.options_box__color} ${styles.pink} ${
                 currentColor === "pink" ? styles.active_color : ""
               }`}
-              onClick={() => setCurrentColor('pink')}
+              onClick={() => setCurrentColor("pink")}
             >
               <img src={checkIcon} alt="" />
             </button>
@@ -94,7 +86,7 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
               className={`${styles.options_box__color} ${styles.green} ${
                 currentColor === "green" ? styles.active_color : ""
               }`}
-              onClick={() => setCurrentColor('green')}
+              onClick={() => setCurrentColor("green")}
             >
               <img src={checkIcon} alt="" />
             </button>
@@ -102,14 +94,17 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
               className={`${styles.options_box__color} ${styles.blue} ${
                 currentColor === "blue" ? styles.active_color : ""
               }`}
-              onClick={() => setCurrentColor('blue')}
+              onClick={() => setCurrentColor("blue")}
             >
               <img src={checkIcon} alt="" />
             </button>
           </div>
         </div>
 
-        <button className={`${styles.save_btn} ${colorsMapper[userConfig.color]}`} onClick={saveSettings}>
+        <button
+          className={`${styles.save_btn} ${colorsMapper[userConfig.color]}`}
+          onClick={saveSettings}
+        >
           Apply
         </button>
       </div>

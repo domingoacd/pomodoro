@@ -6,6 +6,7 @@ import SettingsButton from "../settingsButton/SettingsButton";
 import Modal from "../modal/Modal";
 import {
   fetchUserConfig,
+  saveUserConfig,
   getActiveTimerFromTimers,
   getInitialTime,
   playNotification
@@ -44,6 +45,9 @@ const App = (props) => {
 
   function saveNewUserConfig(newUserConfig) {
     setUserConfig({ ...newUserConfig });
+    saveUserConfig({...newUserConfig});
+    setTime(getInitialTime());
+    clearTimer();
   }
 
   function startTimer() {
@@ -51,15 +55,16 @@ const App = (props) => {
     let currentMinutes = userConfig[currentTimer.id];
     let currentSeconds = -1;
 
+    setPause(true);
+    
     if (timerIsPaused.current) {
       timerIsPaused.current = false;
     } else {
       const intId = setInterval(() => {
 
         if (currentMinutes <= 0 && currentSeconds <= 1) {
-          clearInterval(intervalId.current);
+          clearTimer();
           playNotification(getActiveTimerFromTimers(timers).id);
-          setPause(false);
         }
         if (!timerIsPaused.current) {
           console.log(currentMinutes, currentSeconds)
@@ -80,14 +85,17 @@ const App = (props) => {
       }, 1000);
 
       intervalId.current = intId;
-      console.log(intId)
-      setPause(true);
     }
   }
 
   function pauseTimer() {
     timerIsPaused.current = true;
-    setPause(true);
+    setPause(false);
+  }
+
+  function clearTimer() {
+    clearInterval(intervalId.current);
+    setPause(false);
   }
 
   return (

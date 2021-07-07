@@ -1,8 +1,8 @@
 export const STORAGE_NAME = "pomo_config";
 export const DEFAULT_TIMER = "pomodoro";
 export const BASE_CONFIG = Object.freeze({
-  pomodoro: 1,
-  short_break: 1,
+  pomodoro: 25,
+  short_break: 5,
   long_break: 15,
   color: "blue",
   font: "first",

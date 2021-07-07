@@ -31,6 +31,7 @@ const Timer = ({
     pauseTimer();
   };
 
+  console.log(userConfig)
   return (
     <div className={timer}>
       <div className={`${timer__inner} ${colorsMapper[userConfig.color]}`}>

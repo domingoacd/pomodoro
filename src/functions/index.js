@@ -4,8 +4,12 @@ import restSound from '../assets/rest.mp3';
 
 export const fetchUserConfig = () => {
   const userConfig = localStorage.getItem(STORAGE_NAME) || BASE_CONFIG;
-  return { ...userConfig };
+  return { ...JSON.parse(userConfig) };
 };
+
+export const saveUserConfig = (userConfig) => {
+  localStorage.setItem(STORAGE_NAME, JSON.stringify(userConfig));
+}
 
 export const getActiveTimerFromTimers = (timers) => {
   const activeTimer = timers.find((timer) => timer.active);
