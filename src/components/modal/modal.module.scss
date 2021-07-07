@@ -176,3 +176,28 @@
     background-color: variables.$pink;
   }
 }
+
+@media screen and (max-width: 750px) {
+  .modal_box { 
+    flex-direction: column;
+
+    .options_box {
+      
+      &.times {
+        width: 100%;
+        flex-direction: column;
+        label {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          input {
+            width: 50%;
+            padding: 0.2rem 1rem;
+          }
+        }
+      }
+    }
+  }
+}

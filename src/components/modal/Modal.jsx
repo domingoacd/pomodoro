@@ -34,7 +34,7 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
 
         <div className={styles.modal_box}>
           <p className={styles.modal_box__title}>time (minutes)</p>
-          <div className={styles.options_box}>
+          <div className={styles.options_box + " " + styles.times}>
             <label htmlFor="" className={styles.options_box__option}>
               <span>pomodoro</span>
               <input
