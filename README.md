@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Pomodoro React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A pomodoro app to help you organize your time, that allows you configure the timers starting time and choose between three different colors.
 
-## Available Scripts
+**It has three timers**
 
-In the project directory, you can run:
+- Pomodoro timer: To track the time you will be doing your activity
+- Short break timer: The time you will be resting between pomodoros.
+- Long break timer: The time you will be resting when switching from one activity to another.
 
-### `npm start`
+## Starting 🚀
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To have a local copy of this repo, run `git clone https://github.com/domingoacd/pomodoro.git` on your terminal.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Requirements 📋
 
-### `npm test`
+This projects runs with React js, so you will need to have installed **node js**, **npm** and **git** if you decide to clone the repo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Instalation 🔧
 
-### `npm run build`
+Execute the following commands
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tests ⚙️
 
-### `npm run eject`
+The test are handled by Jest, and you can find them inside the [tests folder](https://github.com/domingoacd/pomodoro/tree/main/src/tests)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+And can be executed by
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deploy 📦
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To deploy this proyect, you can use Github Pages running `npm deploy`, or you can use netlify
+with the command `netlify deploy`
 
-## Learn More
+## Techonologies 🛠️
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [React js](https://es.reactjs.org//) - Javascript framework
+- [Jest](https://jestjs.io/) - For handling tests
+- [Sass](https://www.sass-lang.com/) - CSS Preprocessor
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Author ✒️
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Domingo Cabeza** - _Developer_ - [domingoacd](https://github.com/domingoacd)

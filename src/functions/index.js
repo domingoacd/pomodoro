@@ -3,8 +3,8 @@ import pomodoroSound from '../assets/pomodoro.wav'
 import restSound from '../assets/rest.mp3';
 
 export const fetchUserConfig = () => {
-  const userConfig = localStorage.getItem(STORAGE_NAME) || BASE_CONFIG;
-  return { ...JSON.parse(userConfig) };
+  const userConfig = JSON.parse(localStorage.getItem(STORAGE_NAME)) || BASE_CONFIG;
+  return { ...userConfig };
 };
 
 export const saveUserConfig = (userConfig) => {
