@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import styles, { blue, pink, green } from "./modal.module.scss";
 import checkIcon from "../../assets/check.png";
-const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
+
+const Modal = ({ showModal = false, closeModal, userConfig, saveUserConfig }) => {
   const [currentColor, setCurrentColor] = useState(userConfig.color);
   const [pomodoroTime, setPomodoroTime] = useState(null);
   const [shortBreakTime, setShortBreakTime] = useState(null);
@@ -112,4 +114,10 @@ const Modal = ({ showModal, closeModal, userConfig, saveUserConfig }) => {
   );
 };
 
+Modal.propTypes = {
+  showModal: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  userConfig: PropTypes.object.isRequired,
+  
+};
 export default Modal;
